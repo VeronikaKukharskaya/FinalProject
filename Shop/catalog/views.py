@@ -1,19 +1,28 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import *
+from cart.forms import CartAddProductForm
+
 
 # Create your views here.
 
 def product_index(request):
-    products = Product.objects.all()
+    categories = Category.objects.all()
+    products = Product.objects.filter(available=True)
     context = {
+        'categories': categories,
         'products': products
     }
     return render(request, 'product_index.html', context)
 
 
-def product_detail(request, pk):
-    product = Product.objects.get(pk=pk)
+def product_detail(request, id):
+
+    product = get_object_or_404(Product,
+                                id=id,
+                                available=True)
+    cart_product_form = CartAddProductForm()
     context = {
-        'product': product
+        'product': product,
+        'cart_product_form': cart_product_form
     }
     return render(request, 'product_detail.html', context)
