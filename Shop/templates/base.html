@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="ru">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+          crossorigin="anonymous"></script>
+
+    <title>Beauty IMAGE- {% block title %}{% endblock title%}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="{% static 'images/icons.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static '/images/icon.ico' %}">
+</head>
+<style>
+body {
+    background-color: #FFEFD5
+}
+</style>
+
+<body>
+<!--<Start top nav>-->
+<nav class="navbar navbar-expand-lg bg-secondary navbar-black d-none d-lg-block" id="templatemo_nav_top">
+        <div class="container text-light">
+            <div class="w-100 d-flex justify-content-between">
+                <div>
+                    <i class="fa fa-envelope mx-2"></i>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:beauty_image@gmail.com">beauty_image@gmail.com</a>
+                    <i class="fa fa-phone mx-4"></i>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:+375183459812">+375 (18) 345 98 12</a>
+                </div>
+                <div>
+                    <a class="text-light" href="https://www.facebook.com/groups/276564540855562/" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://www.instagram.com/greensoap.ru" target="_blank"><i class="fab fa-instagram fa-sm fa-fw me-2 aria_hidden=true"></i></a>
+                    <a class="text-light" href="https://vk.com/green_soap/" target="_blank"><i class="fab fa-vk fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://t.me/soapgift/" target="_blank"><i class="fab fa-telegram fa-sm fa-fw"></i></a>
+                </div>
+            </div>
+        </div>
+</nav>
+<!--<End top nav>-->
+
+<!--<Header>-->
+<nav class="navbar navbar-expand-lg navbar-light shadow">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <a class="navbar-brand text-dark logo h1 align-self-center" href="{% url 'index' %}">
+                Beauty IMAGE
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+                <div class="flex-fill">
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'product_index' %}">Каталог</a>
+                        </li>
+                       <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about' %}">О Бренде</a>
+                       </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</nav>
+<!--<End header>-->
+
+<!--<Content>-->
+{% block page_content %}
+{% endblock %}
+<!--<end content>-->
+
+<!--<Start footer>-->
+<footer class="bg-secondary" id="tempaltemo_footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-dark border-bottom pb-3 border-light logo">Beauty IMAGE</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt fa-fw"></i>
+                            г.Минск, пр-т Пушкина, д 6<br>
+                            ст.м. Пушкинская
+                        </li>
+                        <li>
+                            <i class="fa fa-phone fa-fw"></i>
+                            <a class="text-dark text-decoration-none" href="tel:+375183459812">+375 (18) 345 98 12</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-envelope fa-fw"></i>
+                            <a class="text-dark text-decoration-none" href="mailto:beauty_image@gmail.com">beauty_image@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</footer>
+</body>
+</html>
+
