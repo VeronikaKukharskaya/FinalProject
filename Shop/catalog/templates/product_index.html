@@ -6,32 +6,32 @@
 <center>
     <h1>Каталог</h1>
 
-<div class="row">
-    {% for product in products %}
-    <div class="col-12 col-md-4 mb-4">
-        <div class="card h-100">
-            <p class="aligncenter">
-                <img src="{{ product.image.url }}" alt="" width="30%">
-            </p>
-            <style>.aligncenter {text-align: center;}</style>
+    <div class="container py-5">
+        <div class="row">
+            {% for product in products %}
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card h-100">
+                    <p class="aligncenter">
+                        <img src="{{ product.image.url }}" alt="" width="30%">
+                    </p>
+                    <style>.aligncenter {text-align: center;}</style>
 
-            <div class="card-body">
-                <h5 class="card-title">{{ product.name }}</h5>
-                <h6 class="card-text">Цена: {{ product.price }}</h6>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <h6 class="card-text">Цена: {{ product.price }}</h6>
 
-                <a href="{% url 'product_detail' product.id %}"
-                   class="btn btn-primary">
-                    Подробнее
-                </a>
+                        <a href="{% url 'product_detail' product.id %}"
+                           class="btn btn-dark">
+                            Подробнее
+                        </a>
+
+                    </div>
+
+                </div>
 
             </div>
-
+            {% endfor %}
         </div>
-
     </div>
-
-    {% endfor %}
-
-</div>
 </center>
 {% endblock %}

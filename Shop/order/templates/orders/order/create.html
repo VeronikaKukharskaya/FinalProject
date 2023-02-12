@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Оформление заказа{% endblock title %}
+
+{% block page_content %}
+<div class="container-fluid py-5 text-center">
+    <div class="row">
+        <div class="col-md-6 m-auto text-center">
+            <h1 class="h1">Оформление заказа</h1>
+        </div>
+        <div class="order-info text-center">
+            <h3 class="text-center">Ваш заказ</h3>
+            {% for item in cart %}
+            <li>
+                {{ item.quantity }} x {{ item.product.name }}
+                <span>Br {{ item.total_price }}</span>
+            </li>
+            {% endfor %}
+        </div>
+        <p>Всего: Br {{ cart.get_total_price }}</p>
+        <form action="." method="post" class="order-form">
+            {{ form.as_p }}
+            <p><input type="submit" class="btn btn-dark" value="Оформить заказ"></p>
+            {% csrf_token %}
+        </form>
+    </div>
+</div>
+{% endblock %}

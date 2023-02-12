@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import *
 from cart.forms import CartAddProductForm
+from django.core.paginator import Paginator
+from django.views.generic import ListView
 
 
 # Create your views here.
@@ -16,7 +18,6 @@ def product_index(request):
 
 
 def product_detail(request, id):
-
     product = get_object_or_404(Product,
                                 id=id,
                                 available=True)
@@ -26,3 +27,13 @@ def product_detail(request, id):
         'cart_product_form': cart_product_form
     }
     return render(request, 'product_detail.html', context)
+
+
+def prod_pag(request):
+    product = Product.objects.all()
+    paginator = Paginator(product, 2)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'product_index.html', {'page_obj': page_obj, 'product': product})
+

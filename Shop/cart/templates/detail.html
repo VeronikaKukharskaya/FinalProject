@@ -4,48 +4,62 @@
 
 {% block page_content %}
 <center>
-    <h1>Корзина</h1>
-    <div style="text-align: center;">
-        <table class="cart">
-            <thead>
-            <tr>
-                <th>Фото</th>
-                <th>Товар</th>
-                <th>Количество</th>
-                <th>Удалить</th>
-                <th>Цена за ед.</th>
-                <th>Цена</th>
-            </tr>
-            </thead>
-
-            <tbody>
+    <h1>Корзина покупок</h1>
+    {% with total_items=cart|length %}
+        {% if cart|length > 0 %}
+    <div class="table">
+        <div class="container">
             {% for item in cart %}
-                {% with product=item.product %}
-                    <tr>
-                        <td>
-                            <a href="{{ product.get_absolute_url }}">
-                                <img src="{{ product.image.url }}" alt="" width="40%">
-                            </a>
-                        </td>
-                        <td>{{ product.name }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td><a href="{% url 'cart_remove' product.id %}">Удалить</a></td>
-                        <td class="num">Br{{ item.price }}</td>
-                        <td class="num">Br{{ item.total_price }}</td>
-                    </tr>
-                {% endwith %}
+            {% with product=item.product %}
+            <div class="row">
+                <div class="col-md-1 m-auto text-center">
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{{ product.image.url }}" alt="" width="90%">
+                    </a>
+                </div>
+                <div class="col-md-4 m-auto">
+                    <a>{{ product.name }}</a>
+                </div>
+                <div class="col-md-1 m-auto">
+                    <a>Br{{ item.price }}</a>
+                </div>
+                <div class="col-md-2 m-auto text-center">
+                    <a>{{ item.quantity }}</a>
+                </div>
+                <div class="col-md-2 m-auto text-center">
+                    <a class="btn btn-dark" href="{% url 'cart_remove' product.id %}">Удалить</a>
+                </div>
+                <div class="col-md-1 m-auto">
+                    Br{{ item.total_price }}
+                </div>
+            </div>
+            {% endwith %}
             {% endfor %}
-            <tr class="total">
-                <td>Всего</td>
-                <td colspan="4"></td>
-                <td class="num">Br {{ cart.get_total_price }}</td>
-            </tr>
-            </tbody>
-        </table>
+            <div class="row justify-content-end">
+                <div class="col-md-8 text-center">
+                    <li class="list-inline-item">
+                        <span class="h3">Сумма:</span>
+                    </li>
+                    <li class="list-inline-item">
+                        <span class="h3"><span id="total_sum">Br {{ cart.get_total_price }}</span></span>
+                    </li>
+                    <li class="list-inline-item">
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'order_create' %}" class="btn btn-dark" name="send">Добавить в заказ</a>
+                        {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-dark" name="send">Добавить в заказ</a>
+                        {% endif %}
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="{% url 'product_index' %}" class="btn btn-dark" name="catalog">Продолжить покупки</a>
+                    </li>
+                </div>
+            </div>
+        </div>
     </div>
-    <p class="text-right">
-        <a href="{% url 'product_index' %}" class="button light">Продолжить покупки</a>
-        <a href="#" class="button">Checkout</a>
-    </p>
+    {% else %}
+            <h4>Ваша корзина пуста</h4>
+        {% endif %}
+    {% endwith %}
 </center>
 {% endblock %}

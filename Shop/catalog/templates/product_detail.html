@@ -4,6 +4,7 @@
 {% block page_content %}
 
 <center><h1>{{ product.name }}</h1></center>
+
 <div class="row">
     <div class="col-md-8">
 
@@ -21,16 +22,11 @@
         {% if product.available %}
         <div class="pt-2">
             <span class="h2 text-dark logo">{{ product.price }} Br</span>
-            <div>
                 <form action="{% url 'cart_add' product.id %}" method="post">
                     {{ cart_product_form }}
                     {% csrf_token %}
-                    <input type="submit" value="Добавить в корзину">
+                    <input type="submit" class="btn btn-dark" value="Добавить в корзину">
                 </form>
-                <a class="btn btn-secondary">
-                    Добавить в корзину
-                </a>
-            </div>
         </div>
         {% else %}
         <p class="h3 py-2">Нет в наличии</p>

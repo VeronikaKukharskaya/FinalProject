@@ -1,0 +1,16 @@
+/* forms */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+input[type=text] {
+  // input elements with type="text" attribute
+}
+input[type=password] {
+  // input elements with type="password" attribute
+}
+
+.rounded-input {
+  padding:10px;
+  border-radius:10px;
+}

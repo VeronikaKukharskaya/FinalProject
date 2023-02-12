@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Register{% endblock title %}
+
+{% block head_plus %}{% endblock head_plus %}
+
+{% block page_content %}
+    <br><br>
+    <div class="container text-center">
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="col-md-5 m-auto text-center">
+                    <h1 class="h1">Регистрация</h1>
+                    <p>
+                        Пожалуйста, заполните форму, чтобы зарегистрироваться. <br>Или <a rel="sponsored" class="text-dark" href="{% url 'login' %}">авторизуйтесь</a>, если вы уже зарегистрированы.
+                    </p>
+                </div>
+            </div>
+            {% for field in user_form %}
+            <div class="row">
+                <div class="col-12 col-lg-4 col-md-4 offset-md-4">
+                    <div class="quote-form-wrapper">
+                        <span style="color: red">{{ field.errors }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col-12 col-lg-4 col-md-4 offset-md-4">
+                    <div class="quote-form-wrapper">
+                        <label class="form-label" for="id_username"></label>
+                        <input type="text" class="form-input" placeholder="Логин"
+                               id="id_username" name="username" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-4 col-md-4 offset-md-4">
+                    <div class="quote-form-wrapper">
+                        <label class="form-label" for="id_email"></label>
+                        <input type="text" class="form-input" placeholder="Email"
+                               id="id_email" name="email" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-4 col-md-4 offset-md-4">
+                    <div class="quote-form-wrapper">
+                        <label class="form-label" for="id_password"></label>
+                        <input type="password" class="form-input" placeholder="Пароль"
+                               id="id_password" name="password" required>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-12 col-lg-4 col-md-4 offset-md-4">
+                    <div class="quote-form-wrapper">
+                            <button type="submit" class="btn btn-dark">Зарегистрироваться</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br><br>
+{% endblock %}
+
+<!--{{ field.label_tag }}-->
+<!--                        {{ field }}-->

@@ -19,11 +19,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', include('main.urls'), name='main'),
     path('admin/', admin.site.urls),
-    path('', include('main.urls')),
     path('cart/', include('cart.urls'), name='cart'),
-    path('catalog/', include('catalog.urls')),
-    path('about/', include('about.urls')),
+    path('catalog/', include('catalog.urls'), name='catalog'),
+    path('about/', include('about.urls'), name='about'),
+    path('auth/', include('authentication.urls')),
+    path('order/', include('order.urls'))
 ]
 
 if settings.DEBUG:
