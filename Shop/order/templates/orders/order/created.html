@@ -3,6 +3,9 @@
 
 {% block page_content %}
     <h1 class="text-center">Thank you</h1>
-    <h3 class="text-center">Your order has been successfully completed. Your order number is
+    <h3 class="text-center">Ваш заказ успешно создан. Номер заказа - Order
         <strong>{{ order.id }}</strong>.</h3>
+    <p class="text-center">
+        Пожалуйста, проверьте заказ в разделе <br> <a rel="sponsored" class="text-dark" href="{% url 'orders' %}">Заказы</a>.
+    </p>
 {% endblock %}

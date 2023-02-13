@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import Profile
 
 
 class LoginForm(forms.Form):
@@ -32,4 +33,43 @@ class RegisterForm(forms.ModelForm):
         fields = ('username', 'email', 'password')
         widgets = {
             'password': forms.PasswordInput()
+        }
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+
+        widgets = {
+            'last_name': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Фамилия',
+                'title': 'Фамилия'
+            }),
+            'first_name': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Имя',
+                'title': 'Имя'
+            }),
+            'patronymic': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Отчество',
+                'title': 'Отчество'
+            }),
+            'email': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Электронная почта',
+                'title': 'Электронная почта',
+            }),
+            'phoneNumber': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Телефон',
+                'title': 'Телефон'
+            }),
+            'address': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Адрес доставки',
+                'title': 'Адрес доставки'
+            })
         }

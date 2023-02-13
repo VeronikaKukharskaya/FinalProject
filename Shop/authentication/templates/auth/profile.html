@@ -15,12 +15,11 @@
     <div class="row">
         <div class="col-lg-3 my-sm-3">
             <h3><a class="h3 text-dark text-decoration-none" href="{% url 'profile' %}">Профиль</a></h3>
-            <h3><a class="h3 text-dark text-decoration-none">Заказы</a></h3>
+            <h3><a class="h3 text-dark text-decoration-none" href="{% url 'orders' %}">Заказы</a></h3>
             <h3><a class="h3 text-dark text-decoration-none" href="{% url 'logout' %}">Выход</a></h3>
         </div>
         <div class="col-lg-9">
             <!-- Профиль пользователя -->
-            {% if chapter == 'profile' %}
             <form action="{% url 'profile' %}" method="post">
                 {% csrf_token %}
                 <!--Поля-->
@@ -55,7 +54,6 @@
                     </div>
                 </div>
             </form>
-            {% endif %}
         </div>
     </div>
 </div>

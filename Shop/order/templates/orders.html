@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Заказы{% endblock title %}
+
+{% block page_content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 m-auto text-center">
+            <h1 class="h1">Заказы</h1>
+            {{ profile.last_name }} {{ profile.first_name }} {{ profile.patronymic }}<br>
+            Email: {{ user.email }}<br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 my-sm-3">
+
+            <h3><a class="h3 text-dark text-decoration-none" href="{% url 'profile' %}">Профиль</a></h3>
+            <h3><a class="h3 text-dark text-decoration-none" href="{% url 'orders' %}">Заказы</a></h3>
+            <h3><a class="h3 text-dark text-decoration-none" href="{% url 'logout' %}">Выход</a></h3>
+        </div>
+        <div class="col-lg-6 text-center">
+            {% for order in orderitems %}
+            <p><h5>Заказ № {{ order.order }}</h5></p>
+            <h6>Количество: {{ order.quantity }}</h6>
+            <h6>{{ order.product }}</h6>
+            <h6>{{ order.name }}</h6>
+            <h6>Стоимость: Br {{ order.get_cost }}</h6>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

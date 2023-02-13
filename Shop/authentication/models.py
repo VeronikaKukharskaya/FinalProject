@@ -14,7 +14,7 @@ class Profile(models.Model):
                                    verbose_name=u'Телефон')  # Номер телефона
     address = models.CharField(max_length=128, blank=True, verbose_name=u'Адрес доставки')  # Адрес
     cart = models.CharField(max_length=256, blank=True,
-                            verbose_name=u'Корзина')  # Корзина: товар: количество в формате словаря
+                            verbose_name=u'Корзина')  # Корзина: товар
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:

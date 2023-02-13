@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, authenticate, login
-from authentication.forms import LoginForm, RegisterForm
+from authentication.forms import LoginForm, RegisterForm, ProfileForm
 from django.views.generic import TemplateView
 from .models import Profile
 from django.urls import reverse
+from order.models import Order, OrderItem
 
 
 # Create your views here.
@@ -60,23 +61,34 @@ def logout_user(request):
 
 
 def profile(request):
-    return render(request, 'auth/profile.html')
+    context = {'profile_form': ProfileForm()}
+
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST)
+        if profile_form.is_valid():
+            profile = request.POST
+            profile.patronymic = request.POST.get("patronymic")
+            profile.phoneNumber = request.POST.get("phoneNumber")
+            profile.address = request.POST.get("address")
+            profile.first_name = request.POST.get("first_name")
+            profile.last_name = request.POST.get("last_name")
+            profile_form.save()
+            context = {'profile': profile}
+
+    return render(request, 'auth/profile.html', context)
 
 
 class ProfilePage(TemplateView):
     template_name = "auth/profile.html"
 
-    def dispatch(self, request, *args,  **kwargs):
-        # try:
+    def dispatch(self, request, *args, **kwargs):
+
         # Определяем, какой раздел Личного кабинета открыть (он может прийти в строке url)
         chapter = 'profile'
         if 'data' in kwargs:
             chapter = kwargs['data']
 
         if request.user.is_authenticated:
-            # Проверяем, есть ли куда вернуться, если нет, назначаем
-            if 'return' not in request.session:
-                request.session['return'] = 'index'
 
             # Подготовка и работа с Профилем пользователя
             profile_data = Profile.objects.get(user=request.user)
@@ -103,3 +115,11 @@ class ProfilePage(TemplateView):
                 return redirect(reverse("login"))
 
             return render(request, self.template_name, locals())
+
+
+def orders(request):
+    my_orders = Order.objects.filter(first_name=request.user)
+    orderitems = OrderItem.objects.all()
+    context = {'my_orders': my_orders,
+               'orderitems': orderitems}
+    return render(request, 'orders.html', context)
