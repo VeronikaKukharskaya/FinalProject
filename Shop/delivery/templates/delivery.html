@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Доставка{% endblock title %}
+
+{% block page_content %}
+<center>
+    <section class="bg-secondary">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-8 text-white">
+                    <h1 class="h1 text-center">Добро пожаловать!</h1>
+                    <p class="text-center">
+                        Рады приветствовать Вас в интернет-магазине косметики.
+                        Здесь Вы найдете средства для ухода за телом и лицом из натуральных ингредиентов,
+                        которые подарят Вашей коже блеск и сияние.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <img class="img-fluid" src="{% static '/images/img_7.png' %}" alt="О нас" width="150" height="300">
+                </div>
+            </div>
+        </div>
+    </section>
+</center>
+<section class="container py-5">
+    <div class="col-lg-8 m-auto">
+        <h1 class="h1">Как мы работаем</h1>
+        <p>После оформления заказа мы свяжемся с вами по телефону или иным способом.
+            На этом этапе оговариваются сроки выполнения заказа, стоимость доставки.</p>
+        <p>В дальнейшем по электронной почте мы вышлем реквизиты для оплаты и будем держать вас в курсе
+            этапов выполнения заказа.</p>
+        <p>Кроме того, информацию о заказе вы можете посмотреть в своем личном кабинете, если вы
+            <a rel="sponsored" class="text-dark" href="{% url 'register' %}">зарегистрированы</a>
+            в нашем магазине.</p>
+        <p><strong>Желаем удачных покупок и отличного настроения!</strong></p>
+    </div>
+    <div class="row pt-5 pb-3">
+        <div class="col-lg-8 m-auto">
+            <h1 class="h1">Доставка</h1>
+            <p>Самовывоз в Минске, ст.м. Пушкинская.</p>
+            <p>Почта - по тарифам почты.</p>
+            <p>Срочная доставка по Минску в день заказа Яндекс Go. </p>
+            <p>Все вопросы можно уточнить в WhatsApp <a href="https://wa.me/+375183459812">+375 (18) 345 98 12</a></p>
+        </div>
+    </div>
+</section>
+{% endblock %}

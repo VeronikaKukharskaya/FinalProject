@@ -27,6 +27,7 @@ urlpatterns = [
     path('about/', include('about.urls'), name='about'),
     path('auth/', include('authentication.urls')),
     path('blog/', include('blog.urls'), name='blog'),
+    path('delivery/', include('delivery.urls'), name='delivery')
 ]
 
 if settings.DEBUG:

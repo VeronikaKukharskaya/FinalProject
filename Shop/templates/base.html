@@ -62,7 +62,7 @@
                             <a class="nav-link" href="{% url 'blog_index' %}">Блог</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link">Доставка</a>
+                            <a class="nav-link" href="{% url 'delivery' %}">Доставка</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"></a>
@@ -133,6 +133,7 @@
                         <li><a class="text-decoration-none" href="{% url 'about' %}">- О Бренде</a></li>
                         <li><a class="text-decoration-none" href="{% url 'product_index' %}">- Каталог</a></li>
                         <li><a class="text-decoration-none" href="{% url 'blog_index' %}">- Блог</a></li>
+                        <li><a class="text-decoration-none" href="{% url 'delivery' %}">- Доставка</a></li>
                     </ul>
                 </div>
             </div>
@@ -152,5 +153,7 @@
                 </div>
             </div>
     </footer>
+    {% block script_plus %}
+    {% endblock script_plus %}
 </body>
 </html>

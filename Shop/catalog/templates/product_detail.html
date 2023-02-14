@@ -1,9 +1,15 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}О товаре{% endblock title %}
+
+{% block head_plus %}
+<link rel="stylesheet" href="{% static '/css/forms.css' %}">
+{% endblock head_plus %}
 
 {% block page_content %}
 
 <center><h1>{{ product.name }}</h1></center>
+
 
 <div class="row">
     <div class="col-md-8">
@@ -19,19 +25,31 @@
         <br>
         <h5>Описание:</h5>
         <p>{{ product.description }}</p>
+        <p>Категория: {{ product.category }}</p>
         {% if product.available %}
         <div class="pt-2">
             <span class="h2 text-dark logo">{{ product.price }} Br</span>
-                <form action="{% url 'cart_add' product.id %}" method="post">
-                    {{ cart_product_form }}
-                    {% csrf_token %}
-                    <input type="submit" class="btn btn-dark" value="Добавить в корзину">
-                </form>
+        </div>
+        <br>
+        <form action="{% url 'cart_add' product.id %}" method="post">
+            {% csrf_token %}
+            <h5> Количество:
+            <label class="form-label" for="id_quantity"></label>
+            <input type="button" class="btn btn-secondary" value="-" onClick="change('amount',0,10,-1);"/>
+            <input id="amount" type="text" value="1" id="id_quantity" name="quantity"/>
+            <input type="button" class="btn btn-secondary" value="+" onClick="change('amount',0,10, 1);"/></h5>
+            <input type="submit" class="btn btn-dark" value="Добавить в корзину">
+        </form>
         </div>
         {% else %}
         <p class="h3 py-2">Нет в наличии</p>
         {% endif %}
+        <br>
     </div>
-
+<br>
 </div>
 {% endblock %}
+
+{% block script_plus %}
+<script src="{% static '/js/forms.js' %}"></script>
+{% endblock script_plus %}
