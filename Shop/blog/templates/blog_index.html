@@ -8,12 +8,12 @@
     {% for post in posts %}
     <h2><a class="text-secondary" href="{% url 'blog_detail' post.pk%}">{{ post.title }}</a></h2>
     <small>
-        {{ post.created_on.date }} |&nbsp;
-        Категории:&nbsp;
+        {{ post.created_on.date }} |
+        Категории:
         {% for category in post.categories.all %}
         <a class="text-secondary" href="{% url 'blog_category' category.name %}">
             {{ category.name }}
-        </a>&nbsp;
+        </a>
         {% endfor %}
     </small>
     <p>{{ post.body | slice:":400" }}...</p>

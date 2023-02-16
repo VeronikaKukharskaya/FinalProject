@@ -72,7 +72,7 @@ def profile(request):
             profile.address = request.POST.get("address")
             profile.first_name = request.POST.get("first_name")
             profile.last_name = request.POST.get("last_name")
-            profile_form.save()
+            profile.save()
             context = {'profile': profile}
 
     return render(request, 'auth/profile.html', context)

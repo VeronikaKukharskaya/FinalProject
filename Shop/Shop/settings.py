@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
     'main.apps.MainConfig',
     'about.apps.AboutConfig',
     'catalog.apps.CatalogConfig',
@@ -153,9 +154,3 @@ CART_SESSION_ID = 'cart'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# ADMIN_MEDIA_PREFIX = '/media/admin/'
-
-# try:
-#     from .local_settings import *
-# except ImportError:
-#     pass

@@ -8,13 +8,13 @@ User = get_user_model()
 
 # Пользователи
 class Profile(models.Model):
-    patronymic = models.CharField(max_length=64, blank=True, verbose_name=u'Отчество')  # Отчество
+    patronymic = models.CharField(max_length=64, blank=True, verbose_name=u'Отчество')
     phoneNumberRegex = RegexValidator(regex=r"^\+?1?\d{8,15}$")
     phoneNumber = models.CharField(validators=[phoneNumberRegex], blank=True, max_length=16,
-                                   verbose_name=u'Телефон')  # Номер телефона
-    address = models.CharField(max_length=128, blank=True, verbose_name=u'Адрес доставки')  # Адрес
+                                   verbose_name=u'Телефон')
+    address = models.CharField(max_length=128, blank=True, verbose_name=u'Адрес доставки')
     cart = models.CharField(max_length=256, blank=True,
-                            verbose_name=u'Корзина')  # Корзина: товар
+                            verbose_name=u'Корзина')
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:

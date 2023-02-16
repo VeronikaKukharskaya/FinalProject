@@ -16,6 +16,31 @@
         <p>Профессиональная косметика улучшает состояние кожи после нескольких применений.
             Она отличается активным и насыщенным составом, поэтому работает в комплексе с другими средствами.
             Такие продукты сохраняют кожу здоровой и решают эстетические проблемы.</p>
-    </h4><br><br>
+    </h4>
+    <br><br>
+    <div class="row">
+        <h2 class="text-center">Новые поступления</h2>
+        <p class="h5 text-center">Все самое популярное когда-то было новым. Предлагаем Вам попробовать<br>наши новинки.
+            Вполне возможно, что именно эти товары вскоре станут Вашими любимыми.
+        </p>
+        {% for product in products_new %}
+        <div class="col-12 col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <ul class="list-unstyled d-flex justify-content-between">
+                        <li class="text-muted text-right">Br {{ product.price }}</li>
+                    </ul>
+                    <a class="h4 text-decoration-none text-dark">{{ product.name }}</a>
+                    </p>
+                    <a href="{% url 'product_detail' product.id %}"
+                       class="btn btn-dark">
+                        Подробнее
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
