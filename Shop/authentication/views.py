@@ -65,24 +65,23 @@ def profile(request):
 
     if request.method == 'POST':
         profile_form = ProfileForm(request.POST)
-        if profile_form.is_valid():
-            profile = request.POST
-            profile.patronymic = request.POST.get("patronymic")
-            profile.phoneNumber = request.POST.get("phoneNumber")
-            profile.address = request.POST.get("address")
-            profile.first_name = request.POST.get("first_name")
-            profile.last_name = request.POST.get("last_name")
-            profile.save()
-            context = {'profile': profile}
+        profile = request.POST
+        profile.patronymic = request.POST.get("patronymic")
+        profile.phoneNumber = request.POST.get("phoneNumber")
+        profile.address = request.POST.get("address")
+        profile.first_name = request.POST.get("first_name")
+        profile.last_name = request.POST.get("last_name")
+
+        context = {'profile': profile}
 
     return render(request, 'auth/profile.html', context)
 
 
 class ProfilePage(TemplateView):
-    template_name = "auth/profile.html"
+    template_name = 'auth/profile.html'
 
     def dispatch(self, request, *args, **kwargs):
-
+        # try:
         # Определяем, какой раздел Личного кабинета открыть (он может прийти в строке url)
         chapter = 'profile'
         if 'data' in kwargs:
@@ -91,7 +90,7 @@ class ProfilePage(TemplateView):
         if request.user.is_authenticated:
 
             # Подготовка и работа с Профилем пользователя
-            profile_data = Profile.objects.get(user=request.user)
+            profile_data = Profile.objects.filter(user=request.user)
             profile = profile_data.get_user_data()
 
             if chapter == 'profile':
@@ -107,14 +106,7 @@ class ProfilePage(TemplateView):
                     request.user.last_name = request.POST.get("last_name")
                     request.user.save()
 
-                    # Функция возврата может быть с параметром или без,
-                    # если он был, то будет после разделения строки
-                    ret = request.session['return'].split()
-                    return redirect(*ret)  # Иначе туда, откуда пришли
-            else:
-                return redirect(reverse("login"))
-
-            return render(request, self.template_name, locals())
+        return render(request, self.template_name, locals())
 
 
 def orders(request):
