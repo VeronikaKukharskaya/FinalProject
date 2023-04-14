@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views
 
 urlpatterns = [
     path('', include('main.urls'), name='main'),
@@ -24,7 +25,7 @@ urlpatterns = [
     path('cart/', include('cart.urls'), name='cart'),
     path('order/', include('order.urls'), name='order'),
     path('catalog/', include('catalog.urls'), name='catalog'),
-    path('about/', include('about.urls'), name='about'),
+    path('about/', views.about, name='about'),
     path('auth/', include('authentication.urls')),
     path('blog/', include('blog.urls'), name='blog'),
     path('delivery/', include('delivery.urls'), name='delivery')
