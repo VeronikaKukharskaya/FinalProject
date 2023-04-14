@@ -28,7 +28,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('auth/', include('authentication.urls')),
     path('blog/', include('blog.urls'), name='blog'),
-    path('delivery/', include('delivery.urls'), name='delivery')
+    path('delivery/', views.delivery, name='delivery')
 ]
 
 if settings.DEBUG:
