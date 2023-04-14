@@ -40,14 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_filters',
-    'main.apps.MainConfig',
-    'about.apps.AboutConfig',
     'catalog.apps.CatalogConfig',
     'cart.apps.CartConfig',
     'authentication.apps.AuthenticationConfig',
     'order.apps.OrderConfig',
     'blog.apps.BlogConfig',
-    'delivery.apps.DeliveryConfig',
 ]
 
 MIDDLEWARE = [
